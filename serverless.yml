@@ -1,5 +1,5 @@
 org: dillescas
-service: api-web-scraping2
+service: api-sismo
 
 provider:
   name: aws
@@ -11,14 +11,14 @@ provider:
     role: arn:aws:iam::940376243370:role/LabRole
 
 functions:
-  scrape_table:
+  scrape_table2:
     handler: scrap_table2.lambda_handler  # Asegúrarse de que el nombre del archivo y la función coincidan
     package:
       include:
         - ./**  # Incluir todo el contenido del directorio
     events:
       - http:
-          path: /scrape/table2
+          path: /scrape/table
           method: get
           cors: true
           integration: lambda
@@ -28,7 +28,7 @@ resources:
     TablaWebScrapping:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: TablaWebScrapping
+        TableName: TablaSismo
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
